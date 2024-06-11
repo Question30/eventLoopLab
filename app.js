@@ -16,22 +16,18 @@ try {
 
 const myArr = [1, 2, 3, [4, 5], 6, 7, [8, [9]]];
 
-function flatArray(arr) {
-  let newArr = [];
-  flatten(0, arr, newArr);
-  return newArr;
-}
+let newArr = [];
 
-function flatten(index, arr, newArr) {
-  if (index >= arr.length) return;
+function flatten(index, arr) {
+  if (index >= arr.length) return newArr;
 
   if (Array.isArray(arr[index])) {
-    flatten(0, arr[index], newArr);
+    flatten(0, arr[index]);
   } else {
     newArr.push(arr[index]);
   }
 
-  flatten(index + 1, arr, newArr);
+  return flatten(index + 1, arr);
 }
 
-console.log(flatArray(myArr));
+console.log(flatten(0, myArr));
