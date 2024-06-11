@@ -25,9 +25,11 @@ function flatten(index, arr, newArr) {
     newArr.push(arr[index]);
   }
 
-  return () => flatten(index + 1, arr, newArr);
+  return flatten(index + 1, arr, newArr);
 }
 
+const flattenedArray = flatten(0, myArr, []);
+console.log(flattenedArray);
 const trampoline = (f, ...args) => {
   let result = f(...args);
   while (typeof result === "function") {
@@ -35,9 +37,6 @@ const trampoline = (f, ...args) => {
   }
   return result;
 };
-
-const flattenedArray = trampoline(flatten, 0, myArr, []);
-console.log(flattenedArray);
 
 // Part 3
 
@@ -66,7 +65,6 @@ function primeNumbers(start, n, newArr) {
 }
 
 trampoline(primeNumbers, 2, 10000, []);
-
 setTimeout(() => {
   alert("Calculation complete");
 }, 0);
