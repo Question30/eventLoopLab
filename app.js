@@ -53,18 +53,17 @@ function isPrime(num) {
   return true;
 }
 
-function primeNumbers(start, n, newArr) {
-  if (start > n) return newArr;
+function primeNumbers(start, n) {
+  if (start > n) return;
   if (isPrime(start)) {
     const liEl = document.createElement("li");
     liEl.textContent = start;
     olEl.append(liEl);
-    newArr.push(start);
   }
-  return () => primeNumbers(start + 1, n, newArr);
+  return () => primeNumbers(start + 1, n);
 }
 
-trampoline(primeNumbers, 2, 10000, []);
+trampoline(primeNumbers, 2, 10000);
 setTimeout(() => {
   alert("Calculation complete");
 }, 0);
